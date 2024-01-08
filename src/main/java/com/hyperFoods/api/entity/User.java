@@ -1,5 +1,6 @@
 package com.hyperFoods.api.entity;
 
+import com.hyperFoods.api.dto.CreateUserDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,4 +33,11 @@ public class User {
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime created;
 
+    public User(CreateUserDTO data) {
+        this.name = data.name();
+        this.email = data.email();
+        this.password = data.password();
+        this.active = true;
+        this.created = LocalDateTime.now();
+    }
 }

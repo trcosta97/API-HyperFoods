@@ -1,0 +1,73 @@
+--TABLE CREATION 05/01/24
+
+CREATE TABLE tab_address (
+    address_id INT PRIMARY KEY,
+    street VARCHAR(255),
+    number VARCHAR(255),
+    city VARCHAR(255),
+    province VARCHAR(255),
+    zip_code VARCHAR(255),
+    phone_number VARCHAR(255),
+    active BOOL,
+    created TIMESTAMP
+);
+
+CREATE TABLE tab_user (
+    user_id INT PRIMARY KEY,
+    name VARCHAR(255),
+    email VARCHAR(255),
+    password VARCHAR(255),
+    active BOOL,
+    created TIMESTAMP,
+    address_id INT,
+    FOREIGN KEY (address_id) REFERENCES tab_address(address_id)
+);
+
+CREATE TABLE tab_multi_address (
+    id INT PRIMARY KEY,
+    user_id INT,
+    address_id INT,
+    FOREIGN KEY (user_id) REFERENCES tab_user(user_id),
+    FOREIGN KEY (address_id) REFERENCES tab_address(address_id)
+);
+
+
+CREATE TABLE tab_restaurant (
+    restaurant_id INT PRIMARY KEY,
+    name VARCHAR(255),
+    description VARCHAR(255),
+    city VARCHAR(255),
+    province VARCHAR(255),
+    zip_code VARCHAR(255),
+    phone_number VARCHAR(255),
+    active BOOL,
+    created TIMESTAMP,
+    address_id INT,
+    FOREIGN KEY (address_id) REFERENCES tab_address(address_id)
+);
+
+CREATE TABLE tab_food (
+    food_id INT PRIMARY KEY,
+    name VARCHAR(255),
+    description VARCHAR(255),
+    price DOUBLE(4,2),
+    type VARCHAR(255),
+    restaurant_id INT, -- Corrigi a declaração da coluna restaurant_id
+    active BOOL,
+    created TIMESTAMP,
+    FOREIGN KEY (restaurant_id) REFERENCES tab_restaurant(restaurant_id)
+);
+
+CREATE TABLE tab_functioning_hours (
+    id INT PRIMARY KEY,
+    restaurant_id INT,
+    functioning_hour DATETIME,
+    FOREIGN KEY (restaurant_id) REFERENCES tab_restaurant(restaurant_id)
+);
+
+
+
+
+
+
+

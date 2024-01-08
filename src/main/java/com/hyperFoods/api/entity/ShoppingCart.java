@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @AllArgsConstructor
@@ -18,9 +19,16 @@ public class ShoppingCart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private long id;
-    @OneToMany
+    @ManyToOne
     private User user;
+    @ManyToMany
     private List<Food> food;
-    private double price;
+    private BigDecimal price;
     private boolean active;
+
+
+    public void addItem(Food food) {
+        this.food.add(food);
+        this.price = this.price.add(food.getPrice());
+    }
 }

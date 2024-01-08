@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
@@ -19,12 +20,12 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
     private long id;
-    @OneToMany
+    @ManyToOne
     private User user;
     @OneToOne
     private ShoppingCart cart;
-    private double shipping;
-    private double price;
+    private BigDecimal shipping;
+    private BigDecimal price;
     @Column(name = "is_active", columnDefinition = "BIT(1) DEFAULT 1")
     private boolean active;
     @Temporal(TemporalType.TIMESTAMP)
