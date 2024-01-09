@@ -1,6 +1,7 @@
 package com.hyperFoods.api.entity;
 
 
+import com.hyperFoods.api.entity.Food.Food;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

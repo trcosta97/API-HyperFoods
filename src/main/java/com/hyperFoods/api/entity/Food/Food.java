@@ -1,12 +1,13 @@
-package com.hyperFoods.api.entity;
+package com.hyperFoods.api.entity.Food;
 
+import com.hyperFoods.api.dto.food.CreateFoodDTO;
+import com.hyperFoods.api.dto.food.UpdateFoodDTO;
+import com.hyperFoods.api.entity.Restaurant;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -36,5 +37,23 @@ public class Food {
     @Column(name = "created")
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime created;
+
+    public Food(CreateFoodDTO data) {
+        this.name = data.name();
+        this.description = data.description();
+        this.price = data.price();
+        this.type = data.type();
+        this.active = true;
+        this.created = LocalDateTime.now();
+    }
+
+    public Food(UpdateFoodDTO data) {
+        this.name = data.name();
+        this.description = data.description();
+        this.price = data.price();
+        this.type = data.type();
+        this.active = true;
+        this.created = LocalDateTime.now();
+    }
 }
 

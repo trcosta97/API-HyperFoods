@@ -1,5 +1,8 @@
 package com.hyperFoods.api.entity;
 
+import com.hyperFoods.api.dto.restaurant.CreateRestaurantDTO;
+import com.hyperFoods.api.entity.Food.Food;
+import com.hyperFoods.api.entity.restaurant.FunctioningHours;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,9 +29,9 @@ public class Restaurant {
     @Column(name = "is_active", columnDefinition = "BIT(1) DEFAULT 1")
     private boolean active;
     @ElementCollection
-    @CollectionTable(name = "restaurant_functioning_hours", joinColumns = @JoinColumn(name = "restaurant_id"))
+    @JoinColumn
     @Column(name = "functioning_hour")
-    private List<LocalDateTime> functioningHours;
+    private FunctioningHours functioningHours;
     @OneToOne
     @JoinColumn(name = "address_id", referencedColumnName = "address_id")
     private Address address;
@@ -37,6 +40,13 @@ public class Restaurant {
     @Column(name = "created")
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime created;
+
+    public Restaurant(CreateRestaurantDTO data) {
+        this.name = data.name();
+        this.description = data.description();
+        this.active = true;
+        this.created = LocalDateTime.now();
+    }
 
     public void addFood(Food food) {
         foods.add(food);

@@ -1,6 +1,6 @@
 package com.hyperFoods.api.service;
 
-import com.hyperFoods.api.entity.Food;
+import com.hyperFoods.api.entity.Food.Food;
 import com.hyperFoods.api.repository.FoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

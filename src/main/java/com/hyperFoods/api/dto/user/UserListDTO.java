@@ -1,4 +1,4 @@
-package com.hyperFoods.api.dto;
+package com.hyperFoods.api.dto.user;
 
 import com.hyperFoods.api.entity.User;
 

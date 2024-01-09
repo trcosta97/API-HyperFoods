@@ -1,6 +1,7 @@
 package com.hyperFoods.api.entity;
 
-import com.hyperFoods.api.dto.CreateUserDTO;
+import com.hyperFoods.api.dto.user.CreateUserDTO;
+import com.hyperFoods.api.dto.user.UpdateUserDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,5 +40,11 @@ public class User {
         this.password = data.password();
         this.active = true;
         this.created = LocalDateTime.now();
+    }
+
+    public User(UpdateUserDTO data) {
+        this.name = data.name();
+        this.email = data.email();
+        this.password = data.password();
     }
 }

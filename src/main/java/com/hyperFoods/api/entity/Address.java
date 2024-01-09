@@ -1,5 +1,7 @@
 package com.hyperFoods.api.entity;
 
+
+import com.hyperFoods.api.dto.address.CreateAddressDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,4 +33,15 @@ public class Address {
     private boolean active;
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime created;
+
+    public Address(CreateAddressDTO data) {
+        this.street = data.street();
+        this.number = data.number();
+        this.city = data.city();
+        this.province = data.province();
+        this.zipCode = data.zipCode();
+        this.phoneNumber = data.phoneNumber();
+        this.active = true;
+        this.created = LocalDateTime.now();
+    }
 }

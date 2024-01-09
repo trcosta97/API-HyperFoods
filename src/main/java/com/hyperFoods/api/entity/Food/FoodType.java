@@ -1,4 +1,4 @@
-package com.hyperFoods.api.entity;
+package com.hyperFoods.api.entity.Food;
 
 public enum FoodType {
     PIZZA,
