@@ -35,7 +35,7 @@ public class UserController {
         return ResponseEntity.ok(service.findAll(pageable).map(UserListDTO::new));
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     public ResponseEntity getById(@PathVariable Long id) {
         return ResponseEntity.ok(new UserListDTO(service.findById(id)));
     }

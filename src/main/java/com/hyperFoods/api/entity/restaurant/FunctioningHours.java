@@ -2,7 +2,6 @@ package com.hyperFoods.api.entity.restaurant;
 
 
 import com.hyperFoods.api.dto.restaurant.FunctiotingHoursDTO;
-import com.hyperFoods.api.entity.Restaurant;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +21,7 @@ import java.util.List;
 public class FunctioningHours {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "functioning_hours_id")
     private long id;
     @ElementCollection(targetClass = DayOfWeek.class)
     @Enumerated(EnumType.STRING)
@@ -29,7 +29,7 @@ public class FunctioningHours {
     private LocalDateTime openingTime;
     private LocalDateTime closingTime;
     private LocalDateTime lastUpdated;
-    @OneToOne(mappedBy = "functioningHours")
+    @OneToOne
     @JoinColumn(name = "restaurant_id", referencedColumnName = "restaurant_id")
     private Restaurant restaurant;
 

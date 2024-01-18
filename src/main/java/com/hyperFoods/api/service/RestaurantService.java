@@ -1,7 +1,7 @@
 package com.hyperFoods.api.service;
 
 import com.hyperFoods.api.entity.Food.Food;
-import com.hyperFoods.api.entity.Restaurant;
+import com.hyperFoods.api.entity.restaurant.Restaurant;
 import com.hyperFoods.api.entity.restaurant.FunctioningHours;
 import com.hyperFoods.api.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,7 +2,7 @@ package com.hyperFoods.api.entity.Food;
 
 import com.hyperFoods.api.dto.food.CreateFoodDTO;
 import com.hyperFoods.api.dto.food.UpdateFoodDTO;
-import com.hyperFoods.api.entity.Restaurant;
+import com.hyperFoods.api.entity.restaurant.Restaurant;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

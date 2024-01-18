@@ -16,6 +16,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity(name = "shoppingCart")
+@Table(name = "tab_shopping_cart")
 public class ShoppingCart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

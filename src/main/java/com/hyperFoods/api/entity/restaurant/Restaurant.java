@@ -1,6 +1,7 @@
-package com.hyperFoods.api.entity;
+package com.hyperFoods.api.entity.restaurant;
 
 import com.hyperFoods.api.dto.restaurant.CreateRestaurantDTO;
+import com.hyperFoods.api.entity.Address;
 import com.hyperFoods.api.entity.Food.Food;
 import com.hyperFoods.api.entity.restaurant.FunctioningHours;
 import jakarta.persistence.*;
@@ -28,9 +29,8 @@ public class Restaurant {
     private String description;
     @Column(name = "is_active", columnDefinition = "BIT(1) DEFAULT 1")
     private boolean active;
-    @ElementCollection
-    @JoinColumn
-    @Column(name = "functioning_hour")
+    @JoinColumn(name = "functioning_hours", referencedColumnName = "functioning_hours_id")
+    @OneToOne
     private FunctioningHours functioningHours;
     @OneToOne
     @JoinColumn(name = "address_id", referencedColumnName = "address_id")
