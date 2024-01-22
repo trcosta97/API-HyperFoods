@@ -27,8 +27,8 @@ public class UserService {
     }
 
 
-    public User update(User user) {
-        User existingUser = repository.findById(user.getId()).orElse(null);
+    public User update(User user, Long id) {
+        User existingUser = repository.findById(id).orElse(null);
         if (user.getName() != null){
             existingUser.setName(user.getName());
         }

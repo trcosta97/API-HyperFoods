@@ -23,12 +23,15 @@ public class UserController {
     @Autowired
     private UserService service;
 
+
     @PostMapping
     public ResponseEntity create(@RequestBody @Valid CreateUserDTO data, UriComponentsBuilder uriBuilder) {
-        var user = new User(data);
+        var user = service.save(new User(data));
         var uri = uriBuilder.path("/user/{id}").buildAndExpand(user.getId()).toUri();
         return ResponseEntity.created(uri).body(user);
     }
+
+
 
     @GetMapping
     public ResponseEntity<Page<UserListDTO>> getAll(@PageableDefault(sort = {"name"}, size = 5) Pageable pageable) {
@@ -40,9 +43,9 @@ public class UserController {
         return ResponseEntity.ok(new UserListDTO(service.findById(id)));
     }
 
-    @PutMapping
-    public ResponseEntity update(@RequestBody @Valid UpdateUserDTO data) {
-        return ResponseEntity.ok(new UserListDTO(service.update(new User(data))));
+    @PutMapping("/{id}")
+    public ResponseEntity update(@PathVariable Long id, @RequestBody @Valid UpdateUserDTO data) {
+        return ResponseEntity.ok(new UserListDTO(service.update(new User(data), id)));
     }
 
     @PostMapping("/{id}/address")
@@ -51,7 +54,7 @@ public class UserController {
         return ResponseEntity.ok(new CreateAddressDTO(service.addAddress(id, new Address(data))));
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity deactivateById(@PathVariable Long id) {
         service.deactivateById(id);
         return ResponseEntity.noContent().build();

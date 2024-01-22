@@ -7,14 +7,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public record FunctiotingHoursDTO (
-        List<DayOfWeek> days,
         LocalDateTime openingTime,
         LocalDateTime closingTime
-)
-{
-
-
-
-
-
+) {
 }
+

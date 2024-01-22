@@ -2,6 +2,7 @@ package com.hyperFoods.api.entity;
 
 
 import com.hyperFoods.api.dto.address.CreateAddressDTO;
+import com.hyperFoods.api.dto.restaurant.CreateRestaurantDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -44,4 +45,6 @@ public class Address {
         this.active = true;
         this.created = LocalDateTime.now();
     }
+
+
 }

@@ -11,6 +11,7 @@ import lombok.Setter;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,9 +24,6 @@ public class FunctioningHours {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "functioning_hours_id")
     private long id;
-    @ElementCollection(targetClass = DayOfWeek.class)
-    @Enumerated(EnumType.STRING)
-    private List<DayOfWeek> openingDays;
     private LocalDateTime openingTime;
     private LocalDateTime closingTime;
     private LocalDateTime lastUpdated;
@@ -34,7 +32,6 @@ public class FunctioningHours {
     private Restaurant restaurant;
 
     public FunctioningHours(FunctiotingHoursDTO data) {
-        this.openingDays = data.days();
         this.openingTime = data.openingTime();
         this.closingTime = data.closingTime();
         this.lastUpdated = LocalDateTime.now();

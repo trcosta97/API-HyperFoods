@@ -3,6 +3,7 @@ package com.hyperFoods.api.service;
 import com.hyperFoods.api.entity.Food.Food;
 import com.hyperFoods.api.entity.restaurant.Restaurant;
 import com.hyperFoods.api.entity.restaurant.FunctioningHours;
+import com.hyperFoods.api.repository.FunctioningHoursRepository;
 import com.hyperFoods.api.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +18,9 @@ public class RestaurantService {
     @Autowired
     private RestaurantRepository repository;
 
+    @Autowired
+    private FunctioningHoursRepository functioningHoursRepository;
+
     public Restaurant save(Restaurant restaurant) {
         return repository.save(restaurant);
     }
@@ -29,8 +33,8 @@ public class RestaurantService {
         return repository.findAll(pageable);
     }
 
-    public Restaurant update(Restaurant restaurant) {
-        Restaurant existingRestaurant = repository.findById(restaurant.getId()).orElse(null);
+    public Restaurant update(Restaurant restaurant, Long id) {
+        Restaurant existingRestaurant = repository.findById(id).orElse(null);
         if (restaurant.getName() != null){
             existingRestaurant.setName(restaurant.getName());
         }
@@ -60,8 +64,8 @@ public class RestaurantService {
         repository.save(restaurant);
     }
 
-    public void addFunctioningHours(Restaurant restaurant, FunctioningHours functioningHours) {
+    public Restaurant addFunctioningHours(Restaurant restaurant, FunctioningHours functioningHours) {
         restaurant.setFunctioningHours(functioningHours);
-        repository.save(restaurant);
+        return repository.save(restaurant);
     }
 }

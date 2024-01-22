@@ -30,12 +30,12 @@ public class Restaurant {
     @Column(name = "is_active", columnDefinition = "BIT(1) DEFAULT 1")
     private boolean active;
     @JoinColumn(name = "functioning_hours", referencedColumnName = "functioning_hours_id")
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private FunctioningHours functioningHours;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "address_id")
     private Address address;
-    @OneToMany(mappedBy = "restaurant")
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
     private List<Food> foods;
     @Column(name = "created")
     @Temporal(TemporalType.TIMESTAMP)
@@ -46,6 +46,7 @@ public class Restaurant {
         this.description = data.description();
         this.active = true;
         this.created = LocalDateTime.now();
+        this.address = new Address(data.address());
     }
 
     public void addFood(Food food) {
